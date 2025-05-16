@@ -2,34 +2,42 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
-	ts, err := template.ParseFiles("./ui/pages/hello.gohtml")
+func render(w http.ResponseWriter, r *http.Request, path string, status int, data any) {
+	files := []string{
+		"./ui/pages/base.gohtml",
+		path,
+	}
+
+	ts, err := template.ParseFiles(files...)
 	if err != nil {
-		fmt.Print(err.Error())
+		log.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
-	err = ts.Execute(w, struct{ Name string }{Name: "Dami"})
+	w.WriteHeader(status)
+	err = ts.ExecuteTemplate(w, "base", data)
 	if err != nil {
-		fmt.Print(err.Error())
+		log.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
 	}
+}
+
+func home(w http.ResponseWriter, r *http.Request) {
+	render(w, r, "./ui/pages/hello.gohtml", http.StatusOK, struct{ Name string }{Name: "Dami"})
 }
 
 func contactPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `<h1>Contact Page</h1> You can reach out at <a href="mailto:dami@damilola.dev">dami@damilola.dev</a>`)
+	render(w, r, "ui/pages/contact.gohtml", http.StatusOK, nil)
 }
 
 func faqPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `<h1>FAQ Page</h1> <ul><li><b>Is there a free version? </b>yeah</li></ul>`)
+	render(w, r, "ui/pages/faq.gohtml", http.StatusOK, nil)
 }
 
 func main() {
