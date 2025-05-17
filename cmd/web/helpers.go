@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"log"
 	"net/http"
 )
@@ -12,10 +13,13 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, page stri
 		return
 	}
 
-	w.WriteHeader(status)
-	err := ts.ExecuteTemplate(w, "base", data)
+	buf := new(bytes.Buffer)
+	err := ts.ExecuteTemplate(buf, "base", data)
 	if err != nil {
 		log.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
+
+	w.WriteHeader(status)
+	buf.WriteTo(w)
 }
