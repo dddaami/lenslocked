@@ -4,7 +4,14 @@ import (
 	"bytes"
 	"log"
 	"net/http"
+	"time"
 )
+
+func (app *application) newTemplateData(r *http.Request) templateData {
+	return templateData{
+		CurrentYear: time.Now().Year(),
+	}
+}
 
 func (app *application) render(w http.ResponseWriter, r *http.Request, page string, status int, data any) {
 	ts, ok := app.templateCache[page]

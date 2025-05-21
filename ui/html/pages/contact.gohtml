@@ -1,4 +1,54 @@
 {{define "title"}}Contact{{end}}
+
 {{define "main"}}
-<h1>Contact Page</h1> You can reach out at <a href="mailto:dami@damilola.dev">dami@damilola.dev</a>
+<div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Contact Us</h1>
+    
+    <div class="card mb-8">
+        <div class="flex flex-col md:flex-row md:space-x-8">
+            <div class="md:w-1/2 mb-6 md:mb-0">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Get in Touch</h2>
+                <p class="text-gray-600 mb-4">Have questions or feedback about Lenslocked? We'd love to hear from you.</p>
+                <p class="text-gray-600 mb-2">Email: <a href="mailto:dami@damilola.dev" class="text-indigo-600 hover:text-indigo-800 font-medium">dami@damilola.dev</a></p>
+                <p class="text-gray-600">Response time: Within 24 hours</p>
+            </div>
+            
+            <div class="md:w-1/2">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Office Hours</h2>
+                <div class="space-y-2 text-gray-600">
+                    <p>Monday - Friday: 9am - 5pm</p>
+                    <p>Saturday: 10am - 2pm</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Send a Message</h2>
+        <form class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="name" class="block text-gray-700 mb-1">Name</label>
+                    <input type="text" id="name" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+            <div>
+                <label for="subject" class="block text-gray-700 mb-1">Subject</label>
+                <input type="text" id="subject" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+                <label for="message" class="block text-gray-700 mb-1">Message</label>
+                <textarea id="message" rows="4" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div>
 {{end}}

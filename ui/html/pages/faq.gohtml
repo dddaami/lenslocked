@@ -1,6 +1,39 @@
-<h1>FAQ Page</h1> {{define "title"}}FAQ{{end}}
+{{define "title"}}FAQ{{end}}
 
 {{define "main"}}
-    <h2>FAQ</h2>
-<ul><li><b>Is there a free version? </b>yeah</li></ul>
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8">Frequently Asked Questions</h1>
+    
+    <div class="space-y-6">
+        <div class="card hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Is there a free version?</h3>
+            <p class="text-gray-600">Yes, we offer a free tier with basic features to get you started. You can upgrade to premium plans for additional storage and advanced features.</p>
+        </div>
+        
+        <div class="card hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">How secure is Lenslocked?</h3>
+            <p class="text-gray-600">Lenslocked employs state-of-the-art encryption and security measures to ensure your images remain private and secure. We use industry-standard protocols to protect your data.</p>
+        </div>
+        
+        <div class="card hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">What file formats are supported?</h3>
+            <p class="text-gray-600">Lenslocked supports all major image formats including JPEG, PNG, GIF, and SVG. Videos and other file types are not supported at this time.</p>
+        </div>
+        
+        <div class="card hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">How much storage do I get?</h3>
+            <p class="text-gray-600">Free accounts receive 1GB of storage. Premium plans start at 10GB and go up to unlimited storage based on your subscription level.</p>
+        </div>
+        
+        <div class="card hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Can I download my images?</h3>
+            <p class="text-gray-600">Yes, you can download your original images at any time. We never compress or alter your uploaded files.</p>
+        </div>
+    </div>
+    
+    <div class="mt-8 text-center">
+        <p class="text-gray-600 mb-4">Didn't find what you were looking for?</p>
+        <a href="/contact" class="btn btn-primary">Contact Support</a>
+    </div>
+</div>
 {{end}}

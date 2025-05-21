@@ -10,6 +10,17 @@ import (
 
 type Template struct{}
 
+type User struct {
+	Name string
+}
+
+type templateData struct {
+	CurrentYear int
+	User        struct {
+		Name string
+	}
+}
+
 func newTemplateCache() (map[string]*template.Template, error) {
 	cache := map[string]*template.Template{}
 

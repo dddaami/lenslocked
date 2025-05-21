@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/ddddami/lenslocked/ui"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -15,15 +16,19 @@ type application struct {
 }
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "hello.gohtml", http.StatusOK, struct{ Name string }{Name: "Dami"})
+	data := app.newTemplateData(r)
+	data.User = User{Name: "Dami"}
+	app.render(w, r, "home.gohtml", http.StatusOK, data)
 }
 
 func (app *application) contactPage(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "contact.gohtml", http.StatusOK, nil)
+	data := app.newTemplateData(r)
+	app.render(w, r, "contact.gohtml", http.StatusOK, data)
 }
 
 func (app *application) faqPage(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "faq.gohtml", http.StatusOK, nil)
+	data := app.newTemplateData(r)
+	app.render(w, r, "faq.gohtml", http.StatusOK, data)
 }
 
 func main() {
@@ -40,6 +45,9 @@ func main() {
 	}
 
 	r := chi.NewRouter()
+
+	r.Handle("GET /static/*", http.FileServerFS(ui.Files))
+
 	r.Get("/", app.home)
 	r.Get("/contact", app.contactPage)
 	r.Get("/faq", app.faqPage)
