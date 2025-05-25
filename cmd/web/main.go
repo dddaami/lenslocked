@@ -31,6 +31,16 @@ func (app *application) faqPage(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, "faq.gohtml", http.StatusOK, data)
 }
 
+func (app *application) signup(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+	app.render(w, r, "signup.gohtml", http.StatusOK, data)
+}
+
+func (app *application) login(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+	app.render(w, r, "login.gohtml", http.StatusOK, data)
+}
+
 func main() {
 	addr := flag.String("addr", ":4000", "Server address")
 	flag.Parse()
@@ -51,6 +61,9 @@ func main() {
 	r.Get("/", app.home)
 	r.Get("/contact", app.contactPage)
 	r.Get("/faq", app.faqPage)
+
+	r.Get("/login", app.login)
+	r.Get("/signup", app.signup)
 
 	log.Printf("Starting server at %s", *addr)
 	http.ListenAndServe(*addr, r)
